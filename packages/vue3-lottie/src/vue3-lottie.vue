@@ -111,6 +111,7 @@ export default defineComponent({
     onSegmentStart: null,
     onAnimationLoaded: null,
     onDrawnFrame: null,
+    onHovered: null,
   },
 
   setup(props, { emit: emits }) {
@@ -308,6 +309,7 @@ export default defineComponent({
     const hoverStarted = () => {
       if (lottieAnimation && props.pauseOnHover) {
         lottieAnimation.pause()
+        emits('onHovered', lottieAnimation)
       }
 
       if (lottieAnimation && props.playOnHover) {

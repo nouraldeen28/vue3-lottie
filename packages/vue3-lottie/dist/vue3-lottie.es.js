@@ -201,7 +201,8 @@ const _sfc_main = defineComponent({
     onEnterFrame: null,
     onSegmentStart: null,
     onAnimationLoaded: null,
-    onDrawnFrame: null
+    onDrawnFrame: null,
+    onHovered: null
   },
   setup(props, { emit: emits }) {
     const lottieAnimationContainer = ref();
@@ -334,6 +335,7 @@ const _sfc_main = defineComponent({
     const hoverStarted = () => {
       if (lottieAnimation && props.pauseOnHover) {
         lottieAnimation.pause();
+        emits("onHovered", lottieAnimation);
       }
       if (lottieAnimation && props.playOnHover) {
         lottieAnimation.play();
