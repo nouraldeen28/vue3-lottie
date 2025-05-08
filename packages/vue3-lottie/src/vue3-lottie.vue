@@ -275,7 +275,7 @@ export default defineComponent({
         let clonedEvent = cloneDeep(event) as any
         if (lottieAnimation) {
           clonedEvent['currentFrame'] = lottieAnimation.currentFrame
-          emits('onDrawnFrame', event)
+          emits('onDrawnFrame', clonedEvent)
         } else emits('onDrawnFrame', event)
       })
 

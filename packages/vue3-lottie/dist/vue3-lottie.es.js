@@ -311,7 +311,7 @@ const _sfc_main = defineComponent({
         let clonedEvent = klona(event);
         if (lottieAnimation) {
           clonedEvent["currentFrame"] = lottieAnimation.currentFrame;
-          emits("onDrawnFrame", event);
+          emits("onDrawnFrame", clonedEvent);
         } else
           emits("onDrawnFrame", event);
       });
