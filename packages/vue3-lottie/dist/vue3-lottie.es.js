@@ -304,11 +304,16 @@ const _sfc_main = defineComponent({
       lottieAnimation.addEventListener("complete", () => {
         emits("onComplete");
       });
-      lottieAnimation.addEventListener("enterFrame", (e) => {
-        emits("onEnterFrame", e);
+      lottieAnimation.addEventListener("enterFrame", (event) => {
+        emits("onEnterFrame", event);
       });
-      lottieAnimation.addEventListener("drawnFrame", (e) => {
-        emits("onDrawnFrame", e);
+      lottieAnimation.addEventListener("drawnFrame", (event) => {
+        let clonedEvent = klona(event);
+        if (lottieAnimation) {
+          clonedEvent["currentFrame"] = lottieAnimation.currentFrame;
+          emits("onDrawnFrame", event);
+        } else
+          emits("onDrawnFrame", event);
       });
       lottieAnimation.addEventListener("segmentStart", () => {
         emits("onSegmentStart");

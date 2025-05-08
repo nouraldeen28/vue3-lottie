@@ -268,11 +268,15 @@ export default defineComponent({
         emits('onComplete')
       })
 
-      lottieAnimation.addEventListener('enterFrame', (e) => {
-        emits('onEnterFrame', e)
+      lottieAnimation.addEventListener('enterFrame', (event) => {
+        emits('onEnterFrame', event)
       })
-      lottieAnimation.addEventListener('drawnFrame', (e) => {
-        emits('onDrawnFrame', e)
+      lottieAnimation.addEventListener('drawnFrame', (event) => {
+        let clonedEvent = cloneDeep(event) as any
+        if (lottieAnimation) {
+          clonedEvent['currentFrame'] = lottieAnimation.currentFrame
+          emits('onDrawnFrame', event)
+        } else emits('onDrawnFrame', event)
       })
 
       lottieAnimation.addEventListener('segmentStart', () => {
