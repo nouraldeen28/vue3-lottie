@@ -200,7 +200,8 @@ const _sfc_main = defineComponent({
     onLoopComplete: null,
     onEnterFrame: null,
     onSegmentStart: null,
-    onAnimationLoaded: null
+    onAnimationLoaded: null,
+    onDrawnFrame: null
   },
   setup(props, { emit: emits }) {
     const lottieAnimationContainer = ref();
@@ -302,8 +303,11 @@ const _sfc_main = defineComponent({
       lottieAnimation.addEventListener("complete", () => {
         emits("onComplete");
       });
-      lottieAnimation.addEventListener("enterFrame", () => {
-        emits("onEnterFrame");
+      lottieAnimation.addEventListener("enterFrame", (e) => {
+        emits("onEnterFrame", e);
+      });
+      lottieAnimation.addEventListener("drawnFrame", (e) => {
+        emits("onDrawnFrame", e);
       });
       lottieAnimation.addEventListener("segmentStart", () => {
         emits("onSegmentStart");

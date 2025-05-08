@@ -18,8 +18,8 @@ import {
   watchEffect,
 } from 'vue'
 import Lottie from 'lottie-web'
-import isEqual from 'fast-deep-equal/es6';
-import { klona as cloneDeep } from 'klona/json';
+import isEqual from 'fast-deep-equal/es6'
+import { klona as cloneDeep } from 'klona/json'
 
 import type {
   AnimationDirection,
@@ -110,6 +110,7 @@ export default defineComponent({
     onEnterFrame: null,
     onSegmentStart: null,
     onAnimationLoaded: null,
+    onDrawnFrame: null,
   },
 
   setup(props, { emit: emits }) {
@@ -122,7 +123,7 @@ export default defineComponent({
     watchEffect(async () => {
       // track and ensure that `lottieAnimationContainer` is mounted
       // fix: #502
-      if(!lottieAnimationContainer.value) return
+      if (!lottieAnimationContainer.value) return
 
       if (props.animationLink != '') {
         // fetch the animation data from the url
@@ -266,8 +267,11 @@ export default defineComponent({
         emits('onComplete')
       })
 
-      lottieAnimation.addEventListener('enterFrame', () => {
-        emits('onEnterFrame')
+      lottieAnimation.addEventListener('enterFrame', (e) => {
+        emits('onEnterFrame', e)
+      })
+      lottieAnimation.addEventListener('drawnFrame', (e) => {
+        emits('onDrawnFrame', e)
       })
 
       lottieAnimation.addEventListener('segmentStart', () => {
