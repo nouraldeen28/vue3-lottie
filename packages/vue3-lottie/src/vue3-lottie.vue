@@ -120,7 +120,7 @@ export default defineComponent({
     let animationData: any
     let lottieAnimation: AnimationItem | null = null
     let direction: AnimationDirection = 1
-
+    let currentFrame: Number = 0
     watchEffect(async () => {
       // track and ensure that `lottieAnimationContainer` is mounted
       // fix: #502
@@ -269,6 +269,9 @@ export default defineComponent({
       })
 
       lottieAnimation.addEventListener('enterFrame', (event) => {
+        if (lottieAnimation) {
+          currentFrame = lottieAnimation.currentFrame
+        }
         emits('onEnterFrame', event)
       })
       lottieAnimation.addEventListener('drawnFrame', (event) => {
@@ -455,6 +458,8 @@ export default defineComponent({
     }
 
     return {
+      currentFrame,
+      lottieAnimation,
       lottieAnimationContainer,
       hoverEnded,
       hoverStarted,

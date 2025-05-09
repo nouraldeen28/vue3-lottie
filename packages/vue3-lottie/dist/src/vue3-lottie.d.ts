@@ -74,6 +74,8 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: string;
     };
 }, {
+    currentFrame: Number;
+    lottieAnimation: null;
     lottieAnimationContainer: import("vue").Ref<HTMLDivElement | undefined>;
     hoverEnded: () => void;
     hoverStarted: () => void;

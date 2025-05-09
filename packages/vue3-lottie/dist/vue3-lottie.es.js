@@ -209,6 +209,7 @@ const _sfc_main = defineComponent({
     let animationData;
     let lottieAnimation = null;
     let direction = 1;
+    let currentFrame = 0;
     watchEffect(async () => {
       if (!lottieAnimationContainer.value)
         return;
@@ -305,6 +306,9 @@ const _sfc_main = defineComponent({
         emits("onComplete");
       });
       lottieAnimation.addEventListener("enterFrame", (event) => {
+        if (lottieAnimation) {
+          currentFrame = lottieAnimation.currentFrame;
+        }
         emits("onEnterFrame", event);
       });
       lottieAnimation.addEventListener("drawnFrame", (event) => {
@@ -435,6 +439,8 @@ const _sfc_main = defineComponent({
       }
     };
     return {
+      currentFrame,
+      lottieAnimation,
       lottieAnimationContainer,
       hoverEnded,
       hoverStarted,
