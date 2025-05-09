@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import type { AnimationSegment } from './types';
+import type { AnimationDirection, AnimationSegment } from './types';
 declare const _sfc_main: import("vue").DefineComponent<{
     animationData: {
         type: PropType<any>;
@@ -74,8 +74,52 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: string;
     };
 }, {
-    currentFrame: Number;
-    lottieAnimation: null;
+    currentFrame: import("vue").Ref<number>;
+    instance: import("vue").Ref<{
+        name: string;
+        isLoaded: boolean;
+        currentFrame: number;
+        currentRawFrame: number;
+        firstFrame: number;
+        totalFrames: number;
+        frameRate: number;
+        frameMult: number;
+        playSpeed: number;
+        playDirection: number;
+        playCount: number;
+        isPaused: boolean;
+        autoplay: boolean;
+        loop: number | boolean;
+        renderer: any;
+        animationID: string;
+        assetsPath: string;
+        timeCompleted: number;
+        segmentPos: number;
+        isSubframeEnabled: boolean;
+        segments: [number, number] | [number, number][];
+        play: (name?: string | undefined) => void;
+        stop: (name?: string | undefined) => void;
+        togglePause: (name?: string | undefined) => void;
+        destroy: (name?: string | undefined) => void;
+        pause: (name?: string | undefined) => void;
+        goToAndStop: (value: string | number, isFrame?: boolean | undefined, name?: string | undefined) => void;
+        goToAndPlay: (value: string | number, isFrame?: boolean | undefined, name?: string | undefined) => void;
+        includeLayers: (data: any) => void;
+        setSegment: (init: number, end: number) => void;
+        resetSegments: (forceFlag: boolean) => void;
+        hide: () => void;
+        show: () => void;
+        resize: () => void;
+        setSpeed: (speed: number) => void;
+        setDirection: (direction: AnimationDirection) => void;
+        setLoop: (isLooping: boolean) => void;
+        playSegments: (segments: AnimationSegment | AnimationSegment[], forceFlag?: boolean | undefined) => void;
+        setSubframe: (useSubFrames: boolean) => void;
+        getDuration: (inFrames?: boolean | undefined) => number;
+        triggerEvent: <T extends import("lottie-web").AnimationEventName>(name: T, args: import("lottie-web").AnimationEvents[T]) => void;
+        addEventListener: <T_1 extends import("lottie-web").AnimationEventName>(name: T_1, callback: import("lottie-web").AnimationEventCallback<import("lottie-web").AnimationEvents[T_1]>) => () => void;
+        removeEventListener: <T_2 extends import("lottie-web").AnimationEventName>(name: T_2, callback?: import("lottie-web").AnimationEventCallback<import("lottie-web").AnimationEvents[T_2]> | undefined) => void;
+    } | null>;
     lottieAnimationContainer: import("vue").Ref<HTMLDivElement | undefined>;
     hoverEnded: () => void;
     hoverStarted: () => void;

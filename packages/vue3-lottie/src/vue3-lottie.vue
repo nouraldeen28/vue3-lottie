@@ -120,7 +120,8 @@ export default defineComponent({
     let animationData: any
     let lottieAnimation: AnimationItem | null = null
     let direction: AnimationDirection = 1
-    let currentFrame: Number = 0
+    const currentFrame = ref<number>(0)
+    const instance = ref<AnimationItem | null>(null)
     watchEffect(async () => {
       // track and ensure that `lottieAnimationContainer` is mounted
       // fix: #502
@@ -213,6 +214,7 @@ export default defineComponent({
 
       // actually load the animation
       lottieAnimation = Lottie.loadAnimation(lottieAnimationConfig)
+      instance.value = lottieAnimation
 
       setTimeout(() => {
         autoPlay = props.autoPlay
@@ -270,7 +272,7 @@ export default defineComponent({
 
       lottieAnimation.addEventListener('enterFrame', (event) => {
         if (lottieAnimation) {
-          currentFrame = lottieAnimation.currentFrame
+          currentFrame.value = lottieAnimation.currentFrame
         }
         emits('onEnterFrame', event)
       })
@@ -356,7 +358,12 @@ export default defineComponent({
         }
       },
     )
-
+    watch(
+      () => lottieAnimation,
+      (newVal) => {
+        instance.value = newVal
+      },
+    )
     // method to play the animation
     const play = () => {
       if (lottieAnimation) {
@@ -459,7 +466,7 @@ export default defineComponent({
 
     return {
       currentFrame,
-      lottieAnimation,
+      instance,
       lottieAnimationContainer,
       hoverEnded,
       hoverStarted,
