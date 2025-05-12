@@ -202,7 +202,8 @@ const _sfc_main = defineComponent({
     onSegmentStart: null,
     onAnimationLoaded: null,
     onDrawnFrame: null,
-    onHovered: null
+    onHoverStart: null,
+    onHoverEnd: null
   },
   setup(props, { emit: emits }) {
     const lottieAnimationContainer = ref();
@@ -346,11 +347,11 @@ const _sfc_main = defineComponent({
     const hoverStarted = () => {
       if (lottieAnimation && props.pauseOnHover) {
         lottieAnimation.pause();
-        emits("onHovered", lottieAnimation);
       }
       if (lottieAnimation && props.playOnHover) {
         lottieAnimation.play();
       }
+      emits("onHoverStart");
     };
     const hoverEnded = () => {
       if (lottieAnimation && props.pauseOnHover) {
@@ -359,6 +360,7 @@ const _sfc_main = defineComponent({
       if (lottieAnimation && props.playOnHover) {
         lottieAnimation.pause();
       }
+      emits("onHoverEnd");
     };
     watch(() => props.pauseAnimation, () => {
       if ((props.pauseOnHover || props.playOnHover) && props.pauseAnimation) {

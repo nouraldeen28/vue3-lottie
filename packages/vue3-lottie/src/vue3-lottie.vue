@@ -111,7 +111,8 @@ export default defineComponent({
     onSegmentStart: null,
     onAnimationLoaded: null,
     onDrawnFrame: null,
-    onHovered: null,
+    onHoverStart: null,
+    onHoverEnd: null,
   },
 
   setup(props, { emit: emits }) {
@@ -318,12 +319,11 @@ export default defineComponent({
     const hoverStarted = () => {
       if (lottieAnimation && props.pauseOnHover) {
         lottieAnimation.pause()
-        emits('onHovered', lottieAnimation)
       }
-
       if (lottieAnimation && props.playOnHover) {
         lottieAnimation.play()
       }
+      emits('onHoverStart')
     }
 
     // function to check if the container is no longer being hovered
@@ -334,6 +334,7 @@ export default defineComponent({
       if (lottieAnimation && props.playOnHover) {
         lottieAnimation.pause()
       }
+      emits('onHoverEnd')
     }
 
     // watch for changes in props.pauseAnimation

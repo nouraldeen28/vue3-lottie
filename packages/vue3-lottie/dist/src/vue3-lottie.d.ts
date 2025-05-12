@@ -143,7 +143,8 @@ declare const _sfc_main: import("vue").DefineComponent<{
     onSegmentStart: null;
     onAnimationLoaded: null;
     onDrawnFrame: null;
-    onHovered: null;
+    onHoverStart: null;
+    onHoverEnd: null;
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     animationData: {
         type: PropType<any>;
@@ -224,7 +225,8 @@ declare const _sfc_main: import("vue").DefineComponent<{
     onOnSegmentStart?: ((...args: any[]) => any) | undefined;
     onOnAnimationLoaded?: ((...args: any[]) => any) | undefined;
     onOnDrawnFrame?: ((...args: any[]) => any) | undefined;
-    onOnHovered?: ((...args: any[]) => any) | undefined;
+    onOnHoverStart?: ((...args: any[]) => any) | undefined;
+    onOnHoverEnd?: ((...args: any[]) => any) | undefined;
 }, {
     animationData: any;
     animationLink: string;
