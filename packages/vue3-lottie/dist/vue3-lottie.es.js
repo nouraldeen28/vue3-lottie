@@ -212,6 +212,7 @@ const _sfc_main = defineComponent({
     let direction = 1;
     const currentFrame = ref(0);
     const instance = ref(null);
+    const currentSetSpeed = ref(0);
     watchEffect(async () => {
       if (!lottieAnimationContainer.value)
         return;
@@ -283,6 +284,7 @@ const _sfc_main = defineComponent({
         emits("onAnimationLoaded");
       }, props.delay);
       lottieAnimation.setSpeed(props.speed);
+      currentSetSpeed.value = props.speed;
       if (props.direction === "reverse") {
         lottieAnimation.setDirection(-1);
       }
@@ -404,6 +406,7 @@ const _sfc_main = defineComponent({
       }
       if (lottieAnimation) {
         lottieAnimation.setSpeed(speed);
+        currentSetSpeed.value = speed;
       }
     };
     const setDirection = (direction2) => {
@@ -448,6 +451,7 @@ const _sfc_main = defineComponent({
     return {
       currentFrame,
       instance,
+      currentSetSpeed,
       lottieAnimationContainer,
       hoverEnded,
       hoverStarted,

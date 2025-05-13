@@ -120,6 +120,17 @@ declare const _sfc_main: import("vue").DefineComponent<{
         addEventListener: <T_1 extends import("lottie-web").AnimationEventName>(name: T_1, callback: import("lottie-web").AnimationEventCallback<import("lottie-web").AnimationEvents[T_1]>) => () => void;
         removeEventListener: <T_2 extends import("lottie-web").AnimationEventName>(name: T_2, callback?: import("lottie-web").AnimationEventCallback<import("lottie-web").AnimationEvents[T_2]> | undefined) => void;
     } | null>;
+    currentSetSpeed: import("vue").Ref<{
+        toString: (radix?: number | undefined) => string;
+        toFixed: (fractionDigits?: number | undefined) => string;
+        toExponential: (fractionDigits?: number | undefined) => string;
+        toPrecision: (precision?: number | undefined) => string;
+        valueOf: () => number;
+        toLocaleString: {
+            (locales?: string | string[] | undefined, options?: Intl.NumberFormatOptions | undefined): string;
+            (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions | undefined): string;
+        };
+    }>;
     lottieAnimationContainer: import("vue").Ref<HTMLDivElement | undefined>;
     hoverEnded: () => void;
     hoverStarted: () => void;
