@@ -284,7 +284,6 @@ const _sfc_main = defineComponent({
         emits("onAnimationLoaded");
       }, props.delay);
       lottieAnimation.setSpeed(props.speed);
-      currentSetSpeed.value = props.speed;
       if (props.direction === "reverse") {
         lottieAnimation.setDirection(-1);
       }

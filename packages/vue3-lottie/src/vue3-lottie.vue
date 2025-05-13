@@ -123,7 +123,7 @@ export default defineComponent({
     let direction: AnimationDirection = 1
     const currentFrame = ref<number>(0)
     const instance = ref<AnimationItem | null>(null)
-    const currentSetSpeed = ref<Number>(0)
+    const currentSetSpeed = ref<number>(0)
     watchEffect(async () => {
       // track and ensure that `lottieAnimationContainer` is mounted
       // fix: #502
@@ -240,7 +240,6 @@ export default defineComponent({
 
       // set the speed and direction
       lottieAnimation.setSpeed(props.speed)
-      currentSetSpeed.value = props.speed
       if (props.direction === 'reverse') {
         lottieAnimation.setDirection(-1)
       }
